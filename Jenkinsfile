@@ -1,3 +1,5 @@
+def imageName = 'richinex/movies-marketplace'
+
 node('workers'){
     stage('Checkout'){
         checkout scm
