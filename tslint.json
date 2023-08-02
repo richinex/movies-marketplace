@@ -3,9 +3,11 @@
   "rules": {
     "no-trailing-whitespace": false,
     "semicolon": false,
-    "whitespace": false, 
+    "whitespace": false,
     "array-type": false,
     "arrow-parens": false,
+    "eofline": false, 
+    "curly": false,
     "deprecation": {
       "severity": "warning"
     },
@@ -70,11 +72,7 @@
     ],
     "object-literal-sort-keys": false,
     "ordered-imports": false,
-    "quotemark": [
-      true,
-      "single",
-      "double"
-    ],
+    "quotemark": false,
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
