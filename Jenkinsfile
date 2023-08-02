@@ -1,7 +1,6 @@
 def imageName = 'richinex/movies-marketplace'
 
-def imageName = 'mlabouardy/movies-marketplace'
-def registry = 'https://registry.slowcoder.com'
+// def registry = 'https://registry.slowcoder.com'
 
 node('workers'){
     stage('Checkout'){
