@@ -1,15 +1,15 @@
 /* tslint:disable */
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing'; // Import this
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ApiService } from './api.service';
 
 describe('ApiService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [HttpClientTestingModule] // Add this line
+    imports: [HttpClientTestingModule]
   }));
 
   it('should be created', () => {
-    const service: ApiService = TestBed.get(ApiService); // Use get instead of inject
+    const service: ApiService = TestBed.inject(ApiService); // Use inject instead of get
     expect(service).toBeTruthy();
   });
 });
