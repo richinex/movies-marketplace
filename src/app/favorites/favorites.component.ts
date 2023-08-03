@@ -15,7 +15,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   private getMovies(){
-    this.apiService.getFavorites().subscribe(data => {
+    this.apiService.getFavorites().subscribe((data: any[]) => { // Explicitly set the type here
       this.movies = data;
     }, err => {
       this.movies = [];
@@ -24,5 +24,4 @@ export class FavoritesComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
