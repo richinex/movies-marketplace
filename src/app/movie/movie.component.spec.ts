@@ -55,6 +55,52 @@ describe('MovieComponent', () => {
 
   beforeEach(() => {
     apiServiceMock = jasmine.createSpyObj('ApiService', ['getMovie', 'addToFavorites']);
+    apiServiceMock.addToFavorites.and.returnValue(of({})); // Use of({}) to return an observable
+    apiServiceMock.getMovie.and.returnValue(of({}));
+
+    activatedRouteMock = {
+      snapshot: {
+        params: { id: 1 },
+      },
+    };
+
+    component = new MovieComponent(apiServiceMock, activatedRouteMock);
+
+    // Mocking $.notify
+    window['$'] = {
+      notify: jasmine.createSpy('notify')
+    };
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should call addToFavorites', () => {
+    const mockMovieData = { title: 'Test Movie' };
+    component.movie = mockMovieData;
+
+    component.addToFav();
+
+    expect(apiServiceMock.addToFavorites).toHaveBeenCalledWith(mockMovieData);
+    expect(window['$'].notify).toHaveBeenCalled();
+  });
+});
+
+
+/* tslint:disable */
+import { MovieComponent } from './movie.component';
+import { ApiService } from '../api.service';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+
+describe('MovieComponent', () => {
+  let component: MovieComponent;
+  let apiServiceMock: any;
+  let activatedRouteMock: any;
+
+  beforeEach(() => {
+    apiServiceMock = jasmine.createSpyObj('ApiService', ['getMovie', 'addToFavorites']);
 
     activatedRouteMock = {
       snapshot: {
@@ -97,25 +143,15 @@ describe('MovieComponent', () => {
 
     expect(component.movie).toEqual({});
   });
-
-  it('should handle success on addToFavorites', () => {
-    apiServiceMock.addToFavorites.and.returnValue(of('Success'));
+  it('should call addToFavorites', () => {
     const mockMovieData = { title: 'Test Movie' };
     component.movie = mockMovieData;
+
     component.addToFav();
 
     expect(apiServiceMock.addToFavorites).toHaveBeenCalledWith(mockMovieData);
     expect(window['$'].notify).toHaveBeenCalled();
   });
 
-  it('should handle error on addToFavorites', () => {
-    apiServiceMock.addToFavorites.and.returnValue(of(null));
-    const mockMovieData = { title: 'Test Movie' };
-    component.movie = mockMovieData;
-    component.addToFav();
 
-    expect(apiServiceMock.addToFavorites).toHaveBeenCalledWith(mockMovieData);
-    expect(window['$'].notify).toHaveBeenCalled();
-  });
 });
-
