@@ -31,6 +31,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
+    console.log(compiled.innerHTML); // Log the inner HTML to see what's being rendered
     expect(compiled.querySelector('.content span').textContent).toContain('marketplace app is running!');
   });
+
 });
