@@ -9,7 +9,7 @@ describe('ApiService', () => {
   }));
 
   it('should be created', () => {
-    const service: ApiService = TestBed.inject(ApiService); // Use inject instead of get, as get is deprecated
+    const service: ApiService = TestBed.get(ApiService); // Use get instead of inject
     expect(service).toBeTruthy();
   });
 });
