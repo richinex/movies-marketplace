@@ -90,7 +90,7 @@
 import { MovieComponent } from './movie.component';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { throwError, of } from 'rxjs';
 
 describe('MovieComponent', () => {
   let component: MovieComponent;
