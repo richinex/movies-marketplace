@@ -27,12 +27,12 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('marketplace');
   });
 
-  it('should render title', () => {
+  it('should render Watchlist link', () => { // Updated test description
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     console.log(compiled.innerHTML); // Log the inner HTML to see what's being rendered
-    expect(compiled.querySelector('.content span').textContent).toContain('marketplace app is running!');
+    expect(compiled.querySelector('.toolbar a').textContent).toContain('Watchlist'); // Updated test expectation
   });
 
 });
