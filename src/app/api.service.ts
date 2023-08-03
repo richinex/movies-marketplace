@@ -1,6 +1,6 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http'; // Import HttpClient
 import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
@@ -11,37 +11,29 @@ export class ApiService {
 
   private BASE_URL = environment.apiURL;
 
-  constructor(private http: Http) { }
+  constructor(private httpClient: HttpClient) {} // Change to httpClient
 
   public addToFavorites(movie) {
-    return this.http
+    return this.httpClient
       .post(`${this.BASE_URL}/favorites`, movie)
-      .pipe(map(res => {
-        return res.json()
-      }))
+      .pipe(map(res => res)); // HttpClient automatically does .json()
   }
 
   public getFavorites() {
-    return this.http
+    return this.httpClient
       .get(`${this.BASE_URL}/favorites`)
-      .pipe(map(res => {
-        return res.json()
-      }))
+      .pipe(map(res => res));
   }
 
   public getMovies() {
-    return this.http
+    return this.httpClient
       .get(`${this.BASE_URL}/movies`)
-      .pipe(map(res => {
-        return res.json()
-      }))
+      .pipe(map(res => res));
   }
 
   public getMovie(id) {
-    return this.http
+    return this.httpClient
       .get(`${this.BASE_URL}/movies/${id}`)
-      .pipe(map(res => {
-        return res.json()
-      }))
+      .pipe(map(res => res));
   }
 }
