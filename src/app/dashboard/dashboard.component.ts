@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private getMovies(){
-    this.apiService.getMovies().subscribe(data => {
+    this.apiService.getMovies().subscribe((data: any[]) => { // Explicitly set the type here
       this.movies = data;
     }, err => {
       this.movies = [];
@@ -28,15 +28,14 @@ export class DashboardComponent implements OnInit {
   }
 
   public searchMovie(){
-    this.apiService.getMovie(this.keyword).subscribe(data => {
+    this.apiService.getMovie(this.keyword).subscribe((data: any) => { // Explicitly set the type here
       this.movies = [];
-      if(Array.isArray(data))
-        this.movies = data;
+      if (Array.isArray(data))
+        this.movies = data as any[]; // Use 'as' to cast the type if needed
       else
         this.movies.push(data);
     }, err => {
       this.movies = [];
-    })
+    });
   }
-
 }
