@@ -1,7 +1,6 @@
-/* tslint:disable */
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
+import { RouterTestingModule } from '@angular/router/testing'; // Import RouterTestingModule for routerLink
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
@@ -10,7 +9,8 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [ DashboardComponent ],
+      imports: [FormsModule, RouterTestingModule] // Include FormsModule and RouterTestingModule
     })
     .compileComponents();
   }));
