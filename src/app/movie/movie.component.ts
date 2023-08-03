@@ -15,15 +15,17 @@ export class MovieComponent implements OnInit {
   public movie: any = {};
 
   constructor(private apiService: ApiService, private activatedRoute: ActivatedRoute) {
-    this.apiService.getMovie(this.activatedRoute.snapshot.params.id).subscribe(data => {
-       data.actors.shift();
+    this.apiService.getMovie(this.activatedRoute.snapshot.params.id).subscribe((data: any) => { // Explicitly set the type here
+      if (data.actors && Array.isArray(data.actors)) {
+        data.actors.shift();
+      }
       this.movie = data;
     }, err => {
       this.movie = {};
     })
   }
 
-  public addToFav(){
+  public addToFav() {
     this.apiService.addToFavorites(this.movie).subscribe(data => {
       $.notify({
         icon: 'la la-bell',
