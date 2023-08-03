@@ -1,6 +1,6 @@
 /* tslint:disable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing'; // Import HttpClientTestingModule
 import { MovieComponent } from './movie.component';
 
 describe('MovieComponent', () => {
@@ -9,7 +9,8 @@ describe('MovieComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovieComponent ]
+      declarations: [ MovieComponent ],
+      imports: [HttpClientTestingModule] // Include HttpClientTestingModule in the imports
     })
     .compileComponents();
   }));
