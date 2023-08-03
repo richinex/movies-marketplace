@@ -153,7 +153,7 @@ describe('MovieComponent', () => {
   });
 
   it('should handle error on addToFavorites', () => {
-    apiServiceMock.addToFavorites.and.returnValue(throwError('Error')); // Simulate an error using throwError
+    apiServiceMock.addToFavorites.and.callFake(() => throwError('Error')); // Simulate an error using throwError
     const mockMovieData = { title: 'Test Movie' };
     component.movie = mockMovieData;
     component.addToFav();
@@ -162,4 +162,3 @@ describe('MovieComponent', () => {
     expect(window['$'].notify).toHaveBeenCalled();
   });
 });
-
