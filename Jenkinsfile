@@ -26,6 +26,7 @@ node('workers'){
 
     stage('Static Code Analysis'){
         withSonarQubeEnv('sonarqube') {
+            sh 'sonar-scanner'
         }
     }
 
