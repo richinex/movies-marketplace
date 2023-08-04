@@ -25,18 +25,14 @@ node('workers'){
     }
 
     stage('Static Code Analysis'){
-    withSonarQubeEnv('sonarqube') {
-        // Get the path to the configured SonarQube Scanner
-        def scannerHome = tool 'sonarqube'
+        withSonarQubeEnv('sonarqube') {
+            // Get the path to the configured SonarQube Scanner
+            def scannerHome = tool 'sonarqube'
 
-        // Define the path to the required Java version
-        def javaHome = '/path/to/required/java'
-
-        // Run the SonarQube scanner using the required Java version
-        sh "JAVA_HOME=${javaHome} ${scannerHome}/bin/sonar-scanner"
+            // Run the SonarQube scanner
+            sh "${scannerHome}/bin/sonar-scanner"
+        }
     }
-}
-
 
 
     stage("Quality Gate"){
