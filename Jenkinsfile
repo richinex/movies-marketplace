@@ -26,9 +26,14 @@ node('workers'){
 
     stage('Static Code Analysis'){
         withSonarQubeEnv('sonarqube') {
-            sh 'sonar-scanner'
+            // Get the path to the configured SonarQube Scanner
+            def scannerHome = tool 'sonarqube'
+
+            // Run the SonarQube scanner
+            sh "${scannerHome}/bin/sonar-scanner"
         }
     }
+
 
 
     stage("Quality Gate"){
