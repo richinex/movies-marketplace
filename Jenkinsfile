@@ -34,7 +34,6 @@ node('workers'){
         }
     }
 
-
     stage("Quality Gate"){
         timeout(time: 5, unit: 'MINUTES') {
             def qg = waitForQualityGate()
@@ -43,10 +42,10 @@ node('workers'){
             }
         }
     }
-    
-    stage('Build'){
-        docker.build(imageName, '--build-arg ENVIRONMENT=sandbox .')
-    }
+
+    // stage('Build'){
+    //     docker.build(imageName, '--build-arg ENVIRONMENT=sandbox .')
+    // }
 
     // stage('Push'){
     //     docker.withRegistry(registry, 'registry') {
