@@ -16,9 +16,7 @@ WORKDIR /app
 
 # Add the Debian Stretch repositories to the sources.list file and update the package lists for upgrades for packages that need upgrading,
 # as well as new packages that have just been released. Then install Chromium.
-RUN echo "deb http://archive.debian.org/debian/ stretch main" > /etc/apt/sources.list \
-    && echo "deb-src http://archive.debian.org/debian/ stretch main" >> /etc/apt/sources.list \
-    && apt-get update && apt-get install -y chromium
+RUN apt-get update && apt-get install -y chromium
 
 # Copy package-lock.json and package.json from your host to the present location (.) in your image (which is /app as defined by WORKDIR).
 COPY package-lock.json package.json ./
