@@ -100,6 +100,9 @@ node('workers') {
 
         }
     }
+        stage('Build'){
+        docker.build(imageName, '--build-arg ENVIRONMENT=sandbox .')
+    }
 }
 
 // move Quality Gate outside of the node block
