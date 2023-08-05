@@ -1,6 +1,6 @@
-# Use the official Node.js 14.17.0 image from the Docker Hub as the base image.
+# Use the official Node.js 14.20.0 image from the Docker Hub as the base image.
 # This image includes Node.js and npm, which are needed to build the application.
-FROM node:14.17.0 as builder
+FROM node:14.20.0 as builder
 
 # The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command.
 # Here ENVIRONMENT is a variable that will be used later in the ng build command.
@@ -16,7 +16,9 @@ WORKDIR /app
 
 # Add the Debian Stretch repositories to the sources.list file and update the package lists for upgrades for packages that need upgrading,
 # as well as new packages that have just been released. Then install Chromium.
-RUN apt-get update && apt-get install -y chromium
+RUN echo "deb http://archive.debian.org/debian/ stretch main" > /etc/apt/sources.list \
+    && echo "deb-src http://archive.debian.org/debian/ stretch main" >> /etc/apt/sources.list \
+    && apt-get update && apt-get install -y chromium
 
 # Copy package-lock.json and package.json from your host to the present location (.) in your image (which is /app as defined by WORKDIR).
 COPY package-lock.json package.json ./
